@@ -1,0 +1,43 @@
+name: KaisabaPoints
+version: 2.0.0
+main: com.kaisaba.points.KaisabaPoints
+api-version: 1.21
+author: bac0n
+website: https://points.bac0n.f5.si
+description: かい鯖グループポイントシステムとの連携プラグイン
+softdepend: ["PlaceholderAPI"]
+
+commands:
+  points:
+    description: ポイントを確認
+    usage: /points [プレイヤー名 | reload]
+    aliases: [pt, point, kaisabapoints]
+  shop:
+    description: ショップを開く
+    usage: /shop [id | create <id> <表示名> | edit <id> | delete <id>]
+    aliases: [s]
+
+permissions:
+  kaisabapoints.*:
+    description: 全ての権限
+    children:
+      kaisabapoints.check.others: true
+      kaisabapoints.reload: true
+      kaisabapoints.shop.admin: true
+
+  kaisabapoints.check.others:
+    description: 他プレイヤーのポイントを確認
+    default: op
+
+  kaisabapoints.reload:
+    description: 設定を再読み込み
+    default: op
+
+  kaisabapoints.shop.admin:
+    description: ショップの作成・編集・削除（管理者用）
+    default: op
+
+  kaisabapoints.shop.create:
+    description: ショップを作成する（shop.player-create-enabled が false でも作成可）
+    # デフォルトは false: player-create-enabled が true ならコード側で全員許可される
+    default: false
